@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="br.com.hitg.tipcalculator.viewmodel.CalculatorViewModel"/>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/calculation_inputs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:paddingBottom="26dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="br.com.hitg.tipcalculator.view.TipCalculatorActivity"
+        tools:showIn="@layout/activity_tip_calculator">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_check_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <EditText
+                android:id="@+id/input_check_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={vm.inputCheckAmount}"
+                android:hint="@string/input_check_amount_hint"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="false"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_tip_percentage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_check_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <EditText
+                android:id="@+id/input_tip_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={vm.inputTipPercentage}"
+                android:hint="@string/input_tip_percentage_hint"
+                android:inputType="number"
+                android:selectAllOnFocus="false" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/calculation_outputs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_tip_percentage">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/bill_amount"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="$20.00"
+                    android:text="@{vm.outputCheckAmount}" />
+
+                <TextView
+                    android:id="@+id/bill_amount_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/bill_amount_label" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tip_amount"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="$11.50"
+                    android:text="@{vm.outputTipAmount}" />
+
+                <TextView
+                    android:id="@+id/tip_amount_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/tip_amount_label" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/grand_total"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    tools:text="$31.50"
+                    android:text="@{vm.outputTotalDollarAmount}" />
+
+                <TextView
+                    android:id="@+id/grand_total_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/grand_total_label" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/calculation_name"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calculation_outputs"
+            android:textAlignment="center"
+            android:text="@{vm.locationName}"
+            tools:text="Veggie Palace"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
